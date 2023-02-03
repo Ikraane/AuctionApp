@@ -1,0 +1,53 @@
+﻿@model IEnumerable<ProjectApp.ViewModels.AuctionVM>
+
+@{
+    ViewData["Title"] = "Ongoing Auctions";
+}
+
+<h1>Ongoing Auctions</h1>
+
+<p>
+    <a asp-action="MyBids">My Bids</a>
+</p>
+<p>
+    <a asp-action="MyWins">My Wins</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Seller)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AskPrice)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Seller)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AskPrice)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id=item.AuctionID}) |
+                </td>
+                <td>
+                @Html.ActionLink("Add Bid", "CreateBid", new { id=item.AuctionID}) |
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
